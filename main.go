@@ -8,21 +8,10 @@ import (
 	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	// import the person module
+	"tutorial.com/person"
 )
-
-type Gender int
-
-const (
-	Male Gender = iota
-	Female
-	NonBinary
-)
-
-type Person struct {
-	Name   string
-	Age    int
-	Gender Gender
-}
 
 func ReadInput() string {
 	reader := bufio.NewReader(os.Stdin)
@@ -35,38 +24,6 @@ func ReadInput() string {
 	}
 
 	return strings.TrimSpace(name)
-}
-
-func IntToGender(code int) Gender {
-	switch code {
-	case 1:
-		return Male
-	case 2:
-		return Female
-	default:
-		return NonBinary
-	}
-}
-
-func (g Gender) String() string {
-	switch g {
-	case Male:
-		return "Male"
-	case Female:
-		return "Female"
-	case NonBinary:
-		return "Non-Binary"
-	default:
-		return "Unknown"
-	}
-}
-
-func CreatePerson(name string, age int, gender int) *Person {
-	return &Person{
-		Name:   name,
-		Age:    age,
-		Gender: IntToGender(gender),
-	}
 }
 
 func main() {
@@ -101,7 +58,7 @@ func main() {
 	}
 
 	fmt.Println("So, to confirm...")
-	profile := CreatePerson(name, age, genderCode)
+	profile := person.CreatePerson(name, age, genderCode)
 
 	fmt.Printf("Your name is %s and you're a %d old %s", profile.Name, profile.Age, profile.Gender)
 }
