@@ -6,17 +6,37 @@ import (
 	"log"
 	"os"
 	"strings"
+	"unicode/utf8"
 )
 
 func main() {
-	fmt.Println("Please enter your name: ")
+
+	var name string
+	var age int
+
+	fmt.Print("Please enter your name: ")
 	reader := bufio.NewReader(os.Stdin)
-	line, err := reader.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
+
+	// Get user input for name
+	name, err := reader.ReadString('\n')
+	name = strings.TrimSpace(name)
+
+	if err != nil || utf8.RuneCountInString(name) == 0 {
+		log.Fatal("Empty string input received")
 	}
 
-	line = strings.TrimSpace(line)
+	fmt.Printf("Welcome %s! \n", name)
 
-	fmt.Println("Welcome ", line, "!")
+	fmt.Print("Please enter your age: ")
+	fmt.Scanln(&age)
+
+	canAccess := func(age int) bool {
+		return age >= 18
+	}
+
+	if canAccess(age) {
+		fmt.Println("Welcome in bud.")
+	} else {
+		fmt.Println("Sorry, can't let you in.")
+	}
 }
