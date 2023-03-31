@@ -1,6 +1,6 @@
 package person
 
-import "sandbox.com/person/gender"
+import "tutorial.com/person/gender"
 
 type Person struct {
 	Name   string
