@@ -1,3 +1,3 @@
-module tutorial.com
+module sandbox.com
 
 go 1.20

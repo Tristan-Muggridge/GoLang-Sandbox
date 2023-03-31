@@ -10,7 +10,7 @@ import (
 	"unicode/utf8"
 
 	// import the person module
-	"tutorial.com/person"
+	"sandbox.com/person"
 )
 
 func ReadInput() string {
